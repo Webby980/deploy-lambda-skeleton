@@ -14,5 +14,5 @@ variable "git_hash" {
 
 variable "lambda_name" {
   type        = "string"
-  default     = "api-internal-skeleton-get"
+  default     = "skeleton-get"
 }
