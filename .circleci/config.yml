@@ -68,6 +68,7 @@ jobs:
       - run:
           name: Deploy the new Lambda version
           command: |
+            python3.6 terraform.py --action=apply --environment=test --component=api-endpoints --profile=default
             python3.6 terraform.py --action=apply --environment=test --component=skeleton-get --profile=default git_hash=${CIRCLE_SHA1}
 
   deploy_to_test:
