@@ -8,6 +8,12 @@
 
 - Replace all occurrences of `rename_me` with your resource name
 
+- Push changes to git
+
+- Add project in CircleCI
+
+- Add environment variables and AWS credentials to circleCI project
+
 ## Adding a new method
 
 - Copy `./api-endpoints/tf-state-get.tf` and rename to `tf-state-{method}.tf`
