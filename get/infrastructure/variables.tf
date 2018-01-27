@@ -11,3 +11,7 @@ variable "project" {
 variable "git_hash" {
   type        = "string"
 }
+
+variable "get_lambda_name" {
+  type        = "string"
+}

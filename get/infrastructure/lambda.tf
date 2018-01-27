@@ -1,4 +1,4 @@
-resource "aws_lambda_function" "${var.get_lambda_name}" {
+resource "aws_lambda_function" "get" {
     function_name = "${var.get_lambda_name}"
     handler = "handler.handle"
     runtime = "python3.6"

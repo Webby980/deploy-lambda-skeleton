@@ -3,9 +3,9 @@ import argparse
 from subprocess import Popen, PIPE
 import sys
 import os
+import logging
 
 BASE_PATH = os.path.dirname(os.path.realpath(__file__))
-
 
 def handle():
     args, tf_vars = parse_arguments()
@@ -44,6 +44,8 @@ def switch_tf_version():
 
 def init(arguments, path):
 
+    print("-var-file={0}/vars/{1}.tfvars".format(BASE_PATH, arguments.environment))
+
     backend_config_file = open('backend-config.txt', 'r')
 
     account_id = get_account_id(arguments)
@@ -59,7 +61,7 @@ def init(arguments, path):
         .replace(' ', '') \
         .splitlines()
 
-    init_command = ['terraform', 'init']
+    init_command = ['terraform', 'init', "-var-file={0}/vars/{1}.tfvars".format(BASE_PATH, arguments.environment)]
 
     for line in file_contents:
         init_command.append('-backend-config=%s' % line)
@@ -69,7 +71,7 @@ def init(arguments, path):
 
 def action(arguments, path, vars=None):
 
-    command = ['terraform', arguments.action]
+    command = ['terraform', arguments.action, "-var-file={0}/vars/{1}.tfvars".format(BASE_PATH, arguments.environment) ]
 
     if vars:
         for var_string in vars:

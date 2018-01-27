@@ -1,19 +1,19 @@
-output "${var.get_lambda_name}_arn" {
-  value = "${aws_lambda_function.create_iak.arn}"
+output "get_arn" {
+  value = "${aws_lambda_function.get.arn}"
 }
 
-output "${var.get_lambda_name}_qualified_arn" {
-  value = "${aws_lambda_function.create_iak.qualified_arn}"
+output "get_qualified_arn" {
+  value = "${aws_lambda_function.get.qualified_arn}"
 }
 
-output "${var.get_lambda_name}_invoke_arn" {
-  value = "${aws_lambda_function.create_iak.invoke_arn}"
+output "get_invoke_arn" {
+  value = "${aws_lambda_function.get.invoke_arn}"
 }
 
-output "${var.get_lambda_name}_version" {
-  value = "${aws_lambda_function.create_iak.version}"
+output "get_version" {
+  value = "${aws_lambda_function.get.version}"
 }
 
-output "${var.get_lambda_name}_source_code_hash" {
-  value = "${concat("aws_lambda_function.", var.get_lambda_name, ".source_code_hash")}"
+output "get_source_code_hash" {
+  value = "${aws_lambda_function.get.source_code_hash}"
 }
