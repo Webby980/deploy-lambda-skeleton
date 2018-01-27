@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: webby980/base-python-tf
     environment:
-      - PYTHONPATH: "${PYTHONPATH}:/root/repo/request_iak"
+      - PYTHONPATH: "${PYTHONPATH}:/root/repo/skeleton"
 
     working_directory: ~/repo
 
@@ -29,16 +29,16 @@ jobs:
           name: Unit test
           command: |
             . venv/bin/activate
-            python3.6 -m unittest discover get
+            python3.6 -m unittest discover skeleton-get
       - run:
           name: Pylint
           command: |
-            pylint get/handler.py
+            pylint skeleton-get/handler.py
       - run:
           name: Coverage
           command: |
             . venv/bin/activate
-            cd get
+            cd skeleton-get
             coverage run --source=. -m unittest discover
             coverage report -m
 
@@ -60,15 +60,15 @@ jobs:
       - run:
           name: Store Lambda artifact and its sha256 hash in S3
           command: |
-            7z h -scrcsha256 get/* -xr\!infrastructure | grep "SHA256 for data:" | cut -c 31- | awk '{ print $1 }' > get-${CIRCLE_SHA1}.hash
-            pip3 install -r get/requirements.txt -t get/
-            cd get/ && 7z a -tzip ../get.zip . -xr\!infrastructure -xr\!requirements.txt -xr\!test_lambda.py -xr\!README.md -xr\!__pycache__/ && cd ..
-            aws s3 cp get-${CIRCLE_SHA1}.hash s3://$S3_ARTIFACTS_BUCKET/${CIRCLE_PROJECT_REPONAME}/get/ --content-type text/plain
-            aws s3 cp request-iak.zip s3://$S3_ARTIFACTS_BUCKET/${CIRCLE_PROJECT_REPONAME}/get/${CIRCLE_SHA1}.zip --region $REGION
+            7z h -scrcsha256 skeleton-get/* -xr\!infrastructure | grep "SHA256 for data:" | cut -c 31- | awk '{ print $1 }' > skeleton-get-${CIRCLE_SHA1}.hash
+            pip3 install -r skeleton-get/requirements.txt -t skeleton-get/
+            cd skeleton-get/ && 7z a -tzip ../skeleton-get.zip . -xr\!infrastructure -xr\!requirements.txt -xr\!test_lambda.py -xr\!README.md -xr\!__pycache__/ && cd ..
+            aws s3 cp skeleton-get-${CIRCLE_SHA1}.hash s3://$S3_ARTIFACTS_BUCKET/${CIRCLE_PROJECT_REPONAME}/skeleton-get/ --content-type text/plain
+            aws s3 cp request-iak.zip s3://$S3_ARTIFACTS_BUCKET/${CIRCLE_PROJECT_REPONAME}/skeleton-get/${CIRCLE_SHA1}.zip --region $REGION
       - run:
           name: Deploy the new Lambda version
           command: |
-            python3.6 terraform.py --action=apply --environment=lambda --component=get --profile=default git_hash=${CIRCLE_SHA1}
+            python3.6 terraform.py --action=apply --environment=lambda --component=skeleton-get --profile=default git_hash=${CIRCLE_SHA1}
 
   deploy_to_test:
     docker:
