@@ -1,0 +1,14 @@
+*.DS_Store
+*.zip
+*.idea
+*__pycache__
+*.pyc
+*.coverage
+
+### Terraform ###
+# Compiled files
+**/*.tfstate
+**/*.tfplan
+**/*.tfstate.backup
+**/.terraform
+**/.terraform/*
