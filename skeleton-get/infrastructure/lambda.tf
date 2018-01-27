@@ -17,5 +17,5 @@ resource "aws_lambda_function" "lambda" {
 
 data "aws_s3_bucket_object" "s3_source_hash" {
   bucket = "${data.terraform_remote_state.lambda_artifacts_s3_bucket.lambda_artifacts_s3_bucket_id}"
-  key    = "${var.lambda_name}/${var.lambda_name}-${var.git_hash}.hash"
+  key    = "${var.path_part}/${var.lambda_name}/${var.lambda_name}-${var.git_hash}.hash"
 }
