@@ -1,7 +1,7 @@
 output "resource_id" {
-  value = "${module.get_endpoint.resource_id}"
+  value = "${aws_api_gateway_resource.resource.id}"
 }
 
 output "resource_path" {
-  value = "${module.get_endpoint.resource_path}"
+  value = "${aws_api_gateway_resource.resource.path}"
 }
