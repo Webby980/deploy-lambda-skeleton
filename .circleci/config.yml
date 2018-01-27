@@ -141,7 +141,7 @@ jobs:
 
 workflows:
   version: 2
-  iak:
+  skeleton:
     jobs:
       - unittest_get:
           filters:

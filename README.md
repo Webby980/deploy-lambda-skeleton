@@ -2,7 +2,7 @@
 
 ## Setting up your GET method
 
-- Replace `skeleton` in `.circleci/config.yml` with the new repo name
+- Replace occurrences of `skeleton` in `.circleci/config.yml` with the new repo name
 
 - Replace all occurrences of `skeleton-get` with an appropriate name
 
