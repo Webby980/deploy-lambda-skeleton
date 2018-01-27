@@ -6,7 +6,7 @@
 
 - Replace all occurrences of `skeleton-get` with an appropriate name
 
-- Replace all occurrences of `rename_me` with your resource name
+- Replace all occurrences of `skeleton` with your resource name under the`./vars` directory
 
 - Push changes to git
 

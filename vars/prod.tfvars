@@ -1,1 +1,1 @@
-path_part = "rename_me"
+path_part = "skeleton"
