@@ -64,7 +64,7 @@ jobs:
             pip3 install -r skeleton-get/requirements.txt -t skeleton-get/
             cd skeleton-get/ && 7z a -tzip ../skeleton-get.zip . -xr\!infrastructure -xr\!requirements.txt -xr\!test_lambda.py -xr\!README.md -xr\!__pycache__/ && cd ..
             aws s3 cp skeleton-get-${CIRCLE_SHA1}.hash s3://$S3_ARTIFACTS_BUCKET/${CIRCLE_PROJECT_REPONAME}/skeleton-get/ --content-type text/plain
-            aws s3 cp request-iak.zip s3://$S3_ARTIFACTS_BUCKET/${CIRCLE_PROJECT_REPONAME}/skeleton-get/${CIRCLE_SHA1}.zip --region $REGION
+            aws s3 cp skeleton-get.zip s3://$S3_ARTIFACTS_BUCKET/${CIRCLE_PROJECT_REPONAME}/skeleton-get/${CIRCLE_SHA1}.zip --region $REGION
       - run:
           name: Deploy the new Lambda version
           command: |
