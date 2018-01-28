@@ -71,7 +71,7 @@ def init(arguments, path):
 def action(arguments, path, vars=None):
 
     tf_var_arg = "-var-file={0}/vars/{1}.tfvars".format(BASE_PATH, arguments.environment)
-    command = ['terraform', arguments.action,  tf_var_arg]
+    command = ['terraform', arguments.action,  tf_var_arg, '-auto-approve']
 
     if vars:
         for var_string in vars:
