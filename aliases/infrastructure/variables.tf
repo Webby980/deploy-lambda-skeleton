@@ -15,3 +15,7 @@ variable "git_hash" {
 variable "get_lambda_name" {
   type        = "string"
 }
+
+variable "path_part" {
+  type = "string"
+}
