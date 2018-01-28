@@ -16,14 +16,19 @@
 
 ## Adding a new method
 
-- Copy `./api-endpoints/tf-state-get.tf` and rename to `tf-state-{method}.tf`
-
-- Adjust the `key` variable within `./api-endpoints/tf-state-{method}.tf`
-
 - Copy the `skeleton-get` directory and rename to the method you want to add
 
 - Change the default value of the `lambda_name` variable in `./{method}/infrastructure/variables.tf`
 
-
 - Copy unittest_get and build_get in `.circleci/config.yml`
 
+
+## Adding a new alias
+
+- Copy `./aliases/tf-state-get.tf` and rename to `tf-state-{method}.tf`
+
+- Adjust the `key` variable within `./aliases/tf-state-{method}.tf`
+
+- Add a new alias in `aliases.tf`
+
+- Add a new lambda permission in `permissions.tf`, be sure to update the method i.e. `/*/GET` included in the source arn.
