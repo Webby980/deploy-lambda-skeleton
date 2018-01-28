@@ -44,8 +44,6 @@ def switch_tf_version():
 
 def init(arguments, path):
 
-    print("-var-file={0}/vars/{1}.tfvars".format(BASE_PATH, arguments.environment))
-
     backend_config_file = open('backend-config.txt', 'r')
 
     account_id = get_account_id(arguments)
@@ -61,7 +59,8 @@ def init(arguments, path):
         .replace(' ', '') \
         .splitlines()
 
-    init_command = ['terraform', 'init', "-var-file={0}/vars/{1}.tfvars".format(BASE_PATH, arguments.environment)]
+    tf_var_arg = "-var-file={0}/vars/{1}.tfvars".format(BASE_PATH, arguments.environment)
+    init_command = ['terraform', 'init', tf_var_arg]
 
     for line in file_contents:
         init_command.append('-backend-config=%s' % line)
@@ -71,7 +70,8 @@ def init(arguments, path):
 
 def action(arguments, path, vars=None):
 
-    command = ['terraform', arguments.action, "-var-file={0}/vars/{1}.tfvars".format(BASE_PATH, arguments.environment) ]
+    tf_var_arg = "-var-file={0}/vars/{1}.tfvars".format(BASE_PATH, arguments.environment)
+    command = ['terraform', arguments.action,  tf_var_arg]
 
     if vars:
         for var_string in vars:
