@@ -8,6 +8,8 @@
 
 - Replace all occurrences of `skeleton` with your resource name under the`./vars` directory
 
+- Rename the `skeleton-api-endpoints` to the new endpoint or mini service name for the repo
+
 - Push changes to git
 
 - Add project in CircleCI
@@ -18,7 +20,7 @@
 
 - Copy the `skeleton-get` directory and rename to the method you want to add
 
-- Change the default value of the `lambda_name` variable in `./{method}/infrastructure/variables.tf`
+- Change the default value of the `path_part` variable in `./{method}/infrastructure/variables.tf`
 
 - Copy unittest_get and build_get in `.circleci/config.yml`
 
