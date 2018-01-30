@@ -16,6 +16,8 @@
 
 - Add environment variables and AWS credentials to circleCI project
 
+- Save the AWS credentials securely in the shared secure store
+
 ## Adding a new method
 
 - Copy the `skeleton-get` directory and rename to the method you want to add
