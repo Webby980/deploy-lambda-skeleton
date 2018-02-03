@@ -1,5 +1,13 @@
 # Skeleton
 
+- Clone this repo into a new directory
+
+- Delete .git/
+
+- Create a new git repository on github.com
+
+- Change permissions of the repository to appropriate values
+
 ## Setting up your GET method
 
 - Replace occurrences of `skeleton` in `.circleci/config.yml` with the new repo name
