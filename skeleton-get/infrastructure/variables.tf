@@ -5,7 +5,6 @@ variable "environment" {
 
 variable "project" {
   type        = "string"
-  default     = "azcard"
 }
 
 variable "git_hash" {
