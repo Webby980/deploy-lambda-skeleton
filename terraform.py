@@ -1,15 +1,15 @@
-"""The purpose of this script it to wrap terraform init to manage s3 keys under the Terraform remote state bucket."""
+"""The purpose of this script it to wrap terraform init to manage s3 keys under the
+    Terraform remote state bucket."""
 import argparse
 from subprocess import Popen, PIPE
 import sys
 import os
-import logging
 
 BASE_PATH = os.path.dirname(os.path.realpath(__file__))
 
+
 def handle():
     args, tf_vars = parse_arguments()
-    validate_component(args)
     component_path = os.path.join(BASE_PATH, args.component, 'infrastructure')
 
     init(args, component_path)
@@ -21,20 +21,13 @@ def parse_arguments():
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--action', help='The Terraform action to perform e.g. plan', required=True)
-    parser.add_argument('--project', help='The name of the project default=azcard', default='azcard')
-    parser.add_argument('--profile', help='The name of the AWS profile default=azcard', default='azcard')
+    parser.add_argument('--project', help='The name of the project default=<your_project_name>', default='<your_project_name>')
+    parser.add_argument('--profile', help='The name of the AWS profile default=default', default='default')
     parser.add_argument('--region', help='The aws region default=eu-west-2', default='eu-west-2')
     parser.add_argument('--environment', help='The aws environment e.g. test', required=True)
     parser.add_argument('--component', help='The terraform component to name the tf state file by', required=True)
 
     return parser.parse_known_args()
-
-
-def validate_component(arguments):
-
-    if arguments.component == 'remote-state':
-        print('ERROR: Component cannot be one time remote state bucket!')
-        sys.exit(1)
 
 
 def switch_tf_version():
